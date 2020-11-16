@@ -1,10 +1,24 @@
 <template>
+  <button @click="msg">btn</button>
+
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
+
+
 </template>
+
+<script>
+    export default {
+        methods:{
+            msg(){
+                this.$message({content: 'ssss'})
+            }
+        }
+    }
+</script>
 
 <style>
 #app {

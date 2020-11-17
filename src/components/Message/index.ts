@@ -18,7 +18,7 @@ function createMsgInstance(config: MessageConfig) {
     const div: HTMLElement = document.createElement('div');
     document.body.appendChild(div);
 
-    const app = createApp(defineComponent({
+    const app: App = createApp(defineComponent({
         render() {
             return h(Message, {
                 ...config,
@@ -42,11 +42,23 @@ function createMsgInstance(config: MessageConfig) {
     }
 
     messageInstance = {
-        destroy,
-        component: app
+        destroy
     };
     return destroy;
 }
+
+['success', 'error', 'waring'].forEach(key => {
+    // @ts-ignore
+    createMsgInstance[key] = function (content: string, duration: number) {
+        return createMsgInstance({
+            content: content,
+            duration: duration,
+            type: key,
+            onClose: () => {
+            }
+        })
+    }
+})
 
 const Api = {
     install(app: App): void {

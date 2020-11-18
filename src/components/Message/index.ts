@@ -44,7 +44,7 @@ function createMsgInstance(config: MessageConfig) {
     messageInstance = {
         destroy
     };
-    return destroy;
+    return messageInstance;
 }
 
 ['success', 'error', 'waring'].forEach(key => {

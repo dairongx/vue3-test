@@ -1,19 +1,21 @@
 <template>
-    <transition name="fade">
-        <router-view/>
-    </transition>
+    <div>
+        <router-view #default="{Component}">
+            <transition name="fade">
+                <component :is="Component"></component>
+            </transition>
+        </router-view>
+    </div>
 </template>
 
 <script>
     export default {
-        methods: {
-
-        }
+        name: 'app'
     }
 </script>
 
 <style>
-    *{
+    * {
         margin: 0;
         padding: 0;
     }

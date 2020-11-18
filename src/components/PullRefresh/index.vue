@@ -14,7 +14,7 @@
 
         <div class="pull-refresh-content">
             <slot></slot>
-        </div>
+        </div>co
     </div>
 </template>
 

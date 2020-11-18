@@ -1,8 +1,7 @@
 <template>
     <transition name="fade">
-        <div class="msg">{{content}}</div>
+        <div v-show="visible" class="pxToVwBlack_msg">{{content}}</div>
     </transition>
-
 </template>
 
 <script>
@@ -23,7 +22,14 @@
             onClose: Function
         },
 
+        data() {
+            return {
+                visible: false
+            }
+        },
+
         mounted() {
+            this.visible = true;
             this.timer = setTimeout(() => {
                 this.close();
             }, this.duration);
@@ -37,6 +43,7 @@
 
         methods: {
             close() {
+                this.visible = false;
                 this.$emit('close');
                 this.onClose && this.onClose();
             }
@@ -47,7 +54,8 @@
 <style scoped>
     .fade-enter-active,
     .fade-leave-active {
-        transition: opacity 1s ease;
+        opacity: 1;
+        transition: all 1s ease;
     }
 
     .fade-enter-from,
@@ -55,13 +63,15 @@
         opacity: 0;
     }
 
-    .msg{
+    .pxToVwBlack_msg {
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-60%);
-        background-color: rgba(0,0,0,0.5);
-        padding: 10px;
-        border: 3px;
+        transform: translate(-50%, -60%);
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #fff;
     }
 </style>

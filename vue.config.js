@@ -24,7 +24,7 @@ module.exports = {
                         ],
                         viewportUnit: "vw",
                         fontViewportUnit: "vw",
-                        selectorBlackList: [],
+                        selectorBlackList: ['.pxToVwBlack_'],
                         minPixelValue: 1,
                         mediaQuery: false,
                         replace: true,

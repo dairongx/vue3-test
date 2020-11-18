@@ -3,17 +3,28 @@
         <pullRefresh v-model="isLoading" @onRefresh="onRefresh" :successDuration="300">
             <h1>about</h1>
             <p>num: {{num}}</p>
+
+            <loading loadingText="加载中...">
+               <!-- <template #icon>
+                    <span>loading...</span>
+                </template>-->
+            </loading>
+
+            <button @click="show">loading</button>
+
+            <div v-loading="isLoading" style="height: 200px;"></div>
         </pullRefresh>
     </div>
 </template>
 
 <script>
     import pullRefresh from 'components/PullRefresh/index.vue';
+    import loading from 'components/Loading/Loading.vue'
 
     export default {
         name: 'about',
         components: {
-            pullRefresh,
+            pullRefresh, loading
         },
         data() {
             return {
@@ -28,13 +39,18 @@
                     this.isLoading = false;
                     this.$message.success('刷新成功');
                 }, 3000)
+            },
+            show() {
+                this.$loading({
+                    loadingText: '加载中...',
+                });
             }
         }
     }
 </script>
 
 <style>
-    .about{
+    .about {
         text-align: center;
         height: 100vh;
     }

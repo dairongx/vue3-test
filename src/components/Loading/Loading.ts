@@ -13,7 +13,12 @@ interface LoadingConfig {
     container?: string | HTMLElement
 }
 
-function createLoadingInstance(config: LoadingConfig) {
+const defaultConfig: LoadingConfig = {
+    duration: 2000,
+    isMask: true,
+};
+
+function createLoadingInstance(config: LoadingConfig = defaultConfig) {
     if (LoadingInstance) {
         return LoadingInstance;
     }

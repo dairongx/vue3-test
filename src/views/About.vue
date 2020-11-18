@@ -41,9 +41,7 @@
                 }, 3000)
             },
             show() {
-                this.$loading({
-                    loadingText: '加载中...',
-                });
+                this.$loading();
             }
         }
     }

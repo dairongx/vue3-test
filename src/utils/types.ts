@@ -1,0 +1,1 @@
+export type fun<T> = (...args: any[]) => T;

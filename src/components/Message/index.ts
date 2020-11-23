@@ -5,9 +5,9 @@ let messageInstance: any;
 
 interface MessageConfig {
     content: string,
-    duration: number,
-    type: string,
-    onClose: () => void
+    duration?: number,
+    type?: string,
+    onClose?: () => void
 }
 
 function createMsgInstance(config: MessageConfig) {

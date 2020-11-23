@@ -31,4 +31,3 @@ export function compose(arr: fun<any>[]): fun<any> {
         }, args);
     }
 }
-

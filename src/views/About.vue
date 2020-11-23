@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <pullRefresh v-model="isRefresh" @onRefresh="onRefresh" :successDuration="300">
-            <List :isLoading="isLoading" class="list-main">
+            <List v-model:loading="isLoading" class="list-main" @loadMore="loadMore" :finished="finished">
                 <!--<h1>about</h1>
                 <p>num: {{num}}</p>
 
@@ -37,6 +37,7 @@
                 num: 0,
                 list: [],
                 isLoading: false,
+                finished: false
             }
         },
         mounted() {
@@ -56,7 +57,7 @@
             },
 
             getList(cb) {
-                this.isLoading = false;
+                this.isLoading = true;
                 setTimeout(() => {
                     if (this.num === 0) {
                         this.list = []
@@ -65,9 +66,19 @@
                         this.list.push(this.num + 1);
                         this.num++;
                     }
-                    this.isLoading = true;
+                    if (this.num >= 80) {
+                        this.finished = true;
+                    }
+                    this.isLoading = false;
                     cb && cb();
                 }, 1000)
+            },
+
+            loadMore() {
+                if (this.finished) {
+                    return;
+                }
+                this.getList();
             }
         }
     }
@@ -76,9 +87,7 @@
 <style>
     .about {
         text-align: center;
-        /*min-height: 100vh;*/
-        height: 100vh;
-        overflow: auto;
+        min-height: 100vh;
     }
 
     .list-main {

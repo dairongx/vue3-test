@@ -32,6 +32,14 @@ export const routes: Array<RouteRecordRaw> = [
             title: 'todoList'
         }
     },
+    {
+        path: '/popup',
+        name: 'popup',
+        component: () => import('../views/popup/popup.vue'),
+        meta: {
+            title: 'popup'
+        }
+    },
 ]
 
 const router = createRouter({

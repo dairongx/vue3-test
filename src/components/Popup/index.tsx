@@ -1,18 +1,55 @@
-import { defineComponent } from 'vue';
+import { defineComponent, Transition } from 'vue';
 import "./index.scss"
 
-interface PopupProps {
-  value: string;
-  onChange: (value: string) => void;
-}
 const Popup = defineComponent({
     name: 'Popup',
-    setup(props) {
-        return () => {
+    props: {
+        show: {
+            type: Boolean,
+            default: false
+        },
+    },
+    setup(props, {emit, slots}) {
+        const clone = ()=> {
+            emit("update:show", false)
+        }
+        const onCkickMask = ()=> {
+            clone()
+        }
+        const renderMask = () => {
             return (
-                <div class="popup">
-                    <h1>popup</h1>
+                <Transition name={'fade'}>
+                    <div class="mask" v-show={props.show} onClick={onCkickMask}></div>
+                </Transition>
+            ) 
+        }
+
+        const renderPopup = ()=> {
+            const {show} = props;
+            return (
+                <div class="popup popup-center" v-show={show}>
+                    <span>
+                    {slots.default?.()}
+                    </span>
                 </div>
+            )
+        }
+
+        const renderTransition = ()=> {
+            return (
+                <Transition name={'fade'}>
+                    {renderPopup()}
+                </Transition>
+            )
+        }
+        return () => {
+            console.log(props)
+            return (
+                <div>
+                    {renderMask()}
+                    {renderTransition()}
+                </div>
+                
             )
         }
     }

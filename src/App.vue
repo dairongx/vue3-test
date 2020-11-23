@@ -20,6 +20,10 @@
         padding: 0;
     }
 
+    body{
+        background-color: #e2e2e2;
+    }
+
     .fade-enter-active,
     .fade-leave-active {
         opacity: 1;

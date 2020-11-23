@@ -31,3 +31,21 @@ export function compose(arr: fun<any>[]): fun<any> {
         }, args);
     }
 }
+
+type ScrollElement = HTMLElement | Window;
+
+export function getScrollDom(element: HTMLElement, rootElement: ScrollElement = window) {
+    let node: HTMLElement = element;
+
+    while (node && node.tagName !== 'HTML' && node.nodeType === 1 && node !== rootElement) {
+        let overFlowY = window.getComputedStyle(node).overflowY;
+
+        if (overFlowY === 'scroll' || overFlowY === 'auto') {
+            return node
+        }
+
+        node = node.parentNode as HTMLElement;
+    }
+
+    return rootElement;
+}

@@ -1,25 +1,28 @@
 <template>
-    <div class="pull-refresh"
-         @touchstart="onTouchStart"
-         @touchmove="onTouchMove"
-         @touchend="onTouchEnd"
-         :style="pullStyle"
-    >
-        <div class="pxToVwBlack_pull-refresh-head">
-            <span v-show="pullStatus==='success'">{{successText}}</span>
-            <span v-show="pullStatus==='pulling'">{{pullingText}}</span>
-            <span v-show="pullStatus==='loosing'">{{loosingText}}</span>
-            <span v-show="pullStatus==='loading'">{{loadingText}}</span>
-        </div>
+    <div class="refresh" ref="refresh">
+        <div class="pull-refresh"
+             @touchstart="onTouchStart"
+             @touchmove="onTouchMove"
+             @touchend="onTouchEnd"
+             :style="pullStyle"
+        >
+            <div class="pxToVwBlack_pull-refresh-head">
+                <span v-show="pullStatus==='success'">{{successText}}</span>
+                <span v-show="pullStatus==='pulling'">{{pullingText}}</span>
+                <span v-show="pullStatus==='loosing'">{{loosingText}}</span>
+                <span v-show="pullStatus==='loading'">{{loadingText}}</span>
+            </div>
 
-        <div class="pull-refresh-content">
-            <slot></slot>
+            <div class="pull-refresh-content">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {defineComponent, ref, watch} from 'vue';
+    import {defineComponent, ref, watch, onMounted, nextTick} from 'vue';
+    import {getScrollDom} from '@/utils/utils';
 
     const DEFAULT_MIN_HEAD_HEIGHT = 50;
     const PULL_STATUS = ['pulling', 'loosing', 'loading', 'success'];
@@ -52,18 +55,35 @@
                 default: 0
             }
         },
+
         setup(props, {emit}) {
 
             let startY = 0;
             let offsetY = 0;
             let isStartPull = false;
             let isPull = false;
+            let ceiling = false;
 
+            let refresh = ref(null);
+            let scrollEl = null;
             let pullStatus = ref('');
             let pullStyle = ref('transition-duration: 300ms;');
 
+            onMounted(() => {
+                nextTick(() => {
+                    scrollEl = getScrollDom(refresh.value);
+
+                })
+            });
+
+            function checkScrollTop() {
+                let y = 'scrollTop' in scrollEl ? scrollEl.scrollTop : scrollEl.pageYOffset;
+                ceiling = y === 0;
+                return ceiling;
+            }
+
             function onTouchStart(e) {
-                if (isStartPull || isPull) {
+                if (!checkScrollTop() || isStartPull || isPull) {
                     return;
                 }
                 isStartPull = true;
@@ -73,7 +93,7 @@
             }
 
             function onTouchMove(e) {
-                if (isPull) {
+                if (!ceiling || isPull) {
                     return;
                 }
                 offsetY = e.touches[0].clientY - startY;
@@ -86,7 +106,7 @@
             }
 
             function onTouchEnd() {
-                if (isPull) {
+                if (!ceiling || isPull) {
                     return;
                 }
                 if (offsetY > DEFAULT_MIN_HEAD_HEIGHT) {
@@ -135,6 +155,7 @@
             return {
                 pullStatus,
                 pullStyle,
+                refresh,
                 onTouchStart,
                 onTouchMove,
                 onTouchEnd
@@ -144,6 +165,11 @@
 </script>
 
 <style scoped>
+    .refresh {
+        user-select: none;
+        overflow: hidden;
+    }
+
     .pull-refresh {
         display: block;
         width: 100%;

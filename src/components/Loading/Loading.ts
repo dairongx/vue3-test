@@ -33,9 +33,9 @@ function createLoadingInstance(config: LoadingConfig = defaultConfig) {
 
     const div: HTMLElement = document.createElement('div');
     if (config.container) {
-        let container: HTMLElement | any;
+        let container: HTMLElement;
         if (typeof config.container === 'string') {
-            container = document.querySelector(config.container);
+            container = document.querySelector(config.container) as HTMLElement;
         } else {
             container = config.container;
         }

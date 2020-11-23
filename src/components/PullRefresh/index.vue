@@ -72,7 +72,6 @@
             onMounted(() => {
                 nextTick(() => {
                     scrollEl = getScrollDom(refresh.value);
-
                 })
             });
 

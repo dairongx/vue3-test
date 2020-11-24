@@ -63,15 +63,18 @@
             let isStartPull = false;
             let isPull = false;
             let ceiling = false;
+            let scrollEl = null;
+            let oldOverflowStyle = '';
 
             let refresh = ref(null);
-            let scrollEl = null;
             let pullStatus = ref('');
             let pullStyle = ref('transition-duration: 300ms;');
 
             onMounted(() => {
                 nextTick(() => {
                     scrollEl = getScrollDom(refresh.value);
+                    let el = scrollEl === window ? document.body : scrollEl;
+                    oldOverflowStyle = window.getComputedStyle(el).overflowY;
                 })
             });
 
@@ -81,10 +84,21 @@
                 return ceiling;
             }
 
+            function setOverflowHide() {
+                let el = scrollEl === window ? document.body : scrollEl;
+                el.style.overflowY = 'hidden';
+            }
+
+            function resetOverflow() {
+                let el = scrollEl === window ? document.body : scrollEl;
+                el.style.overflowY = oldOverflowStyle;
+            }
+
             function onTouchStart(e) {
                 if (!checkScrollTop() || isStartPull || isPull) {
                     return;
                 }
+                setOverflowHide();
                 isStartPull = true;
                 startY = e.touches[0].clientY;
                 pullStatus.value = PULL_STATUS[0];
@@ -148,6 +162,7 @@
                 offsetY = 0;
                 isStartPull = false;
                 isPull = false;
+                resetOverflow();
             }
 
 

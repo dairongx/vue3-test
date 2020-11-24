@@ -8,17 +8,21 @@
             <Loading v-if="loading && !finished" :textVertical="false" :loadingText="loadingText" :size="16"/>
             <span v-if="finished">{{finishedText}}</span>
         </div>
+
+        <BackToTop v-if="hasBackTop" :container="wrap"/>
     </div>
 </template>
 
 <script>
     import Loading from '../Loading/Loading.vue';
+    import BackToTop from '../BackToTop';
     import {getScrollDom, throttle} from '@/utils/utils';
 
     export default {
-        name: "index",
+        name: "List",
         components: {
-            Loading
+            Loading,
+            BackToTop
         },
         props: {
             loadingText: {
@@ -37,14 +41,23 @@
             offset: {
                 type: Number,
                 default: 100
+            },
+            hasBackTop: {
+                type: Boolean,
+                default: false
+            },
+        },
+
+        data() {
+            return {
+                wrap: undefined
             }
         },
+
         mounted() {
-            this.$nextTick(() => {
-                this.wrap = getScrollDom(this.$el);
-                this.onScroll = throttle(this.scroll, 100);
-                this.wrap.addEventListener('scroll', this.onScroll)
-            })
+            this.wrap = getScrollDom(this.$el);
+            this.onScroll = throttle(this.scroll, 100);
+            this.wrap.addEventListener('scroll', this.onScroll)
         },
 
         unmounted() {
@@ -59,7 +72,7 @@
                 let height = this.$el.clientHeight;
                 if (height - (scrollTop + clientHeight) < this.offset) {
                     this.$emit('loadMore');
-                    this.$emit('update:loading',true);
+                    this.$emit('update:loading', true);
                 }
             }
         }

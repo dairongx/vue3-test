@@ -1,7 +1,11 @@
 <template>
     <div class="about">
         <pullRefresh v-model="isRefresh" @onRefresh="onRefresh" :successDuration="300">
-            <List v-model:loading="isLoading" class="list-main" @loadMore="loadMore" :finished="finished">
+            <List v-model:loading="isLoading"
+                  class="list-main"
+                  @loadMore="loadMore"
+                  :hasBackTop="true"
+                  :finished="finished">
                 <!--<h1>about</h1>
                 <p>num: {{num}}</p>
 
@@ -88,6 +92,8 @@
     .about {
         text-align: center;
         min-height: 100vh;
+        /* height: 100vh;
+         overflow: auto;*/
     }
 
     .list-main {

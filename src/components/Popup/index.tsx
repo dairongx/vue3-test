@@ -14,66 +14,42 @@ const Popup = defineComponent({
         }
     },
     setup(props, {emit, attrs, slots}) {
-        console.log(attrs);
-        
         const clone = ()=> {
             emit("update:show", false)
-        }
+        };
         const onCkickMask = ()=> {
             clone()
-        }
+        };
         const renderMask = () => {
             return (
                 <Transition name={'fade'}>
                     <div class="mask" v-show={props.show} onClick={onCkickMask}></div>
                 </Transition>
             ) 
-        }
-
-        const style = () => {
-            const {position} = props;
-            const obj = {
-                'top': 'popup-top',
-                'bottom:': 'popup-bottom',
-                'left': 'popup-left',
-                'right': 'popup-right',
-                'center': 'popup-center'
-            }
-            if(position == 'top') {
-                return 'popup-top'
-            } else if(position == 'bottom') {
-                return 'popup-bottom'
-            }  else if(position == 'left') {
-                return 'popup-left'
-            }  else if(position == 'right') {
-                return 'popup-right'
-            } else {
-                return 'popup-center'
-            }
-        }
+        };
 
         const renderPopup = ()=> {
-            const {show} = props;
-            console.log('attrs',{...attrs});
-            
+            const {show, position} = props;
             return (
-                <div class={['popup',style()]} v-show={show} {...attrs}>
+                <div class={['popup','popup-'+position]} v-show={show} {...attrs}>
                     <span>
                     {slots.default?.()}
                     </span>
                 </div>
             )
-        }
+        };
 
         const renderTransition = ()=> {
+            const {position} = props;
+            const name = position === 'center' ? 'fade':'popup-slide-'+position;
             return (
-                <Transition name={'fade'}>
+                <Transition name={name}>
                     {renderPopup()}
                 </Transition>
             )
-        }
+        };
+
         return () => {
-            console.log(props)
             return (
                 <div>
                     {renderMask()}

@@ -14,6 +14,7 @@
     z-index: 1000;
     overflow-y: auto;
     background-color: #FFF;
+    transition: all 0.5s,
 }
 .popup-center {
     left: 50%;
@@ -45,4 +46,73 @@
     right: 0;
     width: 30%;
     height: 100%;
+}
+
+.fade-enter-active {
+    opacity: 0.5;
+}
+.fade-enter-to {
+    opacity: 1;
+}
+.fade-leave-active, .fade-leave-to {
+    opacity: 0;
+}
+
+// left
+.popup-slide-left-enter-active {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.popup-slide-left-enter-to {
+    opacity: 1;
+    transform: translateX(0);
+}
+.popup-slide-left-leave-active {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+// right
+.popup-slide-right-enter-active {
+    opacity: 0;
+    transform: translateX(100%);
+}
+.popup-slide-right-enter-to {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.popup-slide-right-leave-active {
+    transform: translateX(200%);
+    opacity: 0;
+}
+
+// top
+.popup-slide-top-enter-active {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.popup-slide-top-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.popup-slide-top-leave-active {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+// bottom
+.popup-slide-bottom-enter-active {
+    opacity: 0;
+    transform: translateY(200%);
+}
+.popup-slide-bottom-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.popup-slide-bottom-leave-active {
+    transform: translateY(200%);
+    opacity: 0;
 }

@@ -1,11 +1,9 @@
 <template>
-    <div>
-        <router-view #default="{Component}">
-            <transition name="fade">
-                <component :is="Component"></component>
-            </transition>
-        </router-view>
-    </div>
+    <router-view #default="{Component}">
+        <transition name="fade">
+            <component :is="Component"></component>
+        </transition>
+    </router-view>
 </template>
 
 <script>
@@ -20,8 +18,8 @@
         padding: 0;
     }
 
-    body{
-        background-color: #e2e2e2;
+    body {
+        background-color: #efefef;
     }
 
     .fade-enter-active,

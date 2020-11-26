@@ -57,7 +57,7 @@
         mounted() {
             this.wrap = getScrollDom(this.$el);
             this.onScroll = throttle(this.scroll, 100);
-            this.wrap.addEventListener('scroll', this.onScroll)
+            this.wrap.addEventListener('scroll', this.onScroll);
         },
 
         unmounted() {
@@ -66,7 +66,7 @@
 
         methods: {
             scroll() {
-                if (this.loading) return;
+                if (this.finished || this.loading) return;
                 let scrollTop = 'scrollTop' in this.wrap ? this.wrap.scrollTop : this.wrap.pageYOffset;
                 let clientHeight = 'clientHeight' in this.wrap ? this.wrap.clientHeight : this.wrap.outerHeight;
                 let height = this.$el.clientHeight;

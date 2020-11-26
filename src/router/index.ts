@@ -40,6 +40,14 @@ export const routes: Array<RouteRecordRaw> = [
             title: 'popup'
         }
     },
+    {
+        path: '/layer',
+        name: 'layer',
+        component: () => import('../views/layer.vue'),
+        meta: {
+            title: 'layer'
+        }
+    },
 ]
 
 const router = createRouter({

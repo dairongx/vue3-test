@@ -23,7 +23,7 @@ const Popup = defineComponent({
         const renderMask = () => {
             return (
                 <Transition name={'fade'}>
-                    <div class="mask" v-show={props.show} onClick={onCkickMask}></div>
+                    <div class="popup-mask" v-show={props.show} onClick={onCkickMask}></div>
                 </Transition>
             ) 
         };

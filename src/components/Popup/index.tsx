@@ -11,6 +11,10 @@ const Popup = defineComponent({
         position: {
             type: String,
             default: 'center'
+        },
+        round: {
+            type: Boolean,
+            default: false
         }
     },
     setup(props, {emit, attrs, slots}) {
@@ -28,10 +32,19 @@ const Popup = defineComponent({
             ) 
         };
 
+        const getClass = () => {
+            const {round, position} = props;
+            const classArr = ['popup'];
+            const baseName = 'popup-';
+            classArr.push(round ? baseName+"round-"+position:'');
+            classArr.push(baseName+position);
+            return classArr;
+        }
+
         const renderPopup = ()=> {
-            const {show, position} = props;
+            const {show} = props;
             return (
-                <div class={['popup','popup-'+position]} v-show={show} {...attrs}>
+                <div class={getClass()} v-show={show} {...attrs}>
                     <span>
                     {slots.default?.()}
                     </span>

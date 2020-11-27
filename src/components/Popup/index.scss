@@ -23,6 +23,21 @@
         padding: 30px 50px;
         font-size: 28px;
     }
+    &-round-center {
+        border-radius: 16px;
+    }
+    &-round-top {
+        border-radius: 0 0 16px 16px;
+    }
+    &-round-bottom {
+        border-radius: 16px 16px 0 0;
+    }
+    &-round-left {
+        border-radius: 0 16px 16px 0;
+    }
+    &-round-right {
+        border-radius: 16px 0  0 16px;
+    }
     &-top {
         top: 0;
         left: 0;

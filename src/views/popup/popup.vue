@@ -8,6 +8,7 @@
         <Popup 
             v-model:show="centerShow"
             :position="position"
+            :round="true"
         >
         您的预约保养信息已经提交成功，经销商会很快与您联系并确认您的预约信息。您还可以绑定车辆，有机会获得售后服务保养优惠券
         </Popup>
@@ -15,12 +16,14 @@
             v-model:show="topShow"
             :position="position"
             :style="{height: '50%'}"
+            :round="true"
         >
         您的预约保养信息已经提交成功，经销商会很快与您联系并确认您的预约信息。您还可以绑定车辆，有机会获得售后服务保养优惠券
         </Popup>
         <Popup 
             v-model:show="bottomShow"
             :position="position"
+            :round="true"
         >
         您的预约保养信息已经提交成功，经销商会很快与您联系并确认您的预约信息。您还可以绑定车辆，有机会获得售后服务保养优惠券
         </Popup>
@@ -28,12 +31,14 @@
             v-model:show="leftShow"
             :position="position"
             :style="{width: '50%'}"
+            :round="true"
         >
         您的预约保养信息已经提交成功，经销商会很快与您联系并确认您的预约信息。您还可以绑定车辆，有机会获得售后服务保养优惠券
         </Popup>
         <Popup 
             v-model:show="rightShow"
             :position="position"
+            :round="true"
         >
         您的预约保养信息已经提交成功，经销商会很快与您联系并确认您的预约信息。您还可以绑定车辆，有机会获得售后服务保养优惠券
         </Popup>

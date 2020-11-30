@@ -48,6 +48,14 @@ export const routes: Array<RouteRecordRaw> = [
             title: 'layer'
         }
     },
+    {
+        path: '/icon',
+        name: 'icon',
+        component: () => import('../views/icon/icon.vue'),
+        meta: {
+            title: 'icon'
+        }
+    },
 ]
 
 const router = createRouter({

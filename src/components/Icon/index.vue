@@ -11,6 +11,9 @@ import { defineComponent } from 'vue'
                 type: String,
                 default: ''
             }
+        },
+        mounted() {
+            console.log(111);
         }
     })
 </script>

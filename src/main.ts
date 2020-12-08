@@ -9,7 +9,7 @@ import Icon from './components/Icon'
 import './assets/iconfont/iconfont.css'
 
 // vant
-import {Badge, Button, Cell, CellGroup} from 'vant'
+import { Button } from 'vant'
 
 createApp(App)
     .use(store)
@@ -18,8 +18,4 @@ createApp(App)
     .use(Loading)
     .use(Icon)
     .component("Popup",Popup)
-    .component(Badge.name, Badge)
-    .component(Button.name, Button)
-    .component(CellGroup.name,CellGroup)
-    .component(Cell.name,Cell)
     .mount('#app')

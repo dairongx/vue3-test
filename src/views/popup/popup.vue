@@ -42,12 +42,6 @@
         >
         您的预约保养信息已经提交成功，经销商会很快与您联系并确认您的预约信息。您还可以绑定车辆，有机会获得售后服务保养优惠券
         </Popup>
-        <van-badge :content="200" max="99" />
-        <!-- <van-button text="按钮"></van-button> -->
-        <!-- <van-cell-group>
-            <van-cell title="单元格" value="内容" />
-            <van-cell title="单元格" value="内容" label="描述信息" />
-        </van-cell-group> -->
     </div>
 </template>
 

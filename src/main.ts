@@ -8,6 +8,9 @@ import Popup from './components/Popup'
 import Icon from './components/Icon'
 import './assets/iconfont/iconfont.css'
 
+// vant
+import { Button } from 'vant'
+
 createApp(App)
     .use(store)
     .use(router)

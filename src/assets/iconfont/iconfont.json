@@ -6,6 +6,34 @@
   "description": "vue3.0项目demo，icon组件",
   "glyphs": [
     {
+      "icon_id": "1311619",
+      "name": "购物",
+      "font_class": "gouwu",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "1546603",
+      "name": "小组",
+      "font_class": "xiaozu",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "11569718",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "14095280",
+      "name": "影音设备",
+      "font_class": "yingyinshebei",
+      "unicode": "e785",
+      "unicode_decimal": 59269
+    },
+    {
       "icon_id": "15838562",
       "name": "arrow-up-bold",
       "font_class": "arrow-up-bold",

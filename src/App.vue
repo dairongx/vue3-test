@@ -19,7 +19,7 @@
     }
 
     body {
-        background-color: #efefef;
+        background-color: #ffffff;
     }
 
     .fade-enter-active,

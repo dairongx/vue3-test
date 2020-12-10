@@ -22,3 +22,15 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### iconfont.css需要增加
+```
+[class^='vue'], [class*=" vue"] {
+  font-size: 32px;
+  font-family: "iconfont";
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```

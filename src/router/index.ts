@@ -1,13 +1,13 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import Home from '../views/Home.vue'
+import Index from '../views/Home.vue'
 
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        name: 'Home',
-        component: Home,
+        name: 'index',
+        component: () => import("@/views/index.vue"),
         meta: {
-            title: 'home'
+            title: 'index'
         }
     },
     {

@@ -56,6 +56,14 @@ export const routes: Array<RouteRecordRaw> = [
             title: 'icon'
         }
     },
+    {
+        path: '/scroll',
+        name: 'icon',
+        component: () => import('../views/scroll.vue'),
+        meta: {
+            title: 'scroll'
+        }
+    },
 ]
 
 const router = createRouter({
